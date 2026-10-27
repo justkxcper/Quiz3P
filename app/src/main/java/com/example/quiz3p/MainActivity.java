@@ -1,6 +1,9 @@
 package com.example.quiz3p;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Pytanie> pytania;
+    private TextView textView;
+    private ImageView imageView;
+    private Button buttonTak, buttonNie, buttonDalej;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         dodajPytania();
+        textView = findViewById(R.id.textViewPytanie);
+        buttonTak = findViewById(R.id.button);
+        buttonNie = findViewById(R.id.button2);
+        buttonDalej = findViewById(R.id.button3);
+        imageView = findViewById(R.id.imageView);
+        wypiszPytanie(0);
+    }
+
+    private void wypiszPytanie(int ktore) {
+        Pytanie pytanie = pytania.get(ktore);
+        textView.setText(pytanie.getTrescPytania());
+        imageView.setImageResource((int)(pytanie.getIdZdjecia()));
     }
     private void dodajPytania() {
         pytania = new ArrayList<>();

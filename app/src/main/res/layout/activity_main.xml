@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/lis" />
 
     <TextView
+        android:id="@+id/textViewPytanie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="32sp"
