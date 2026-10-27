@@ -1,6 +1,9 @@
 package com.example.quiz3p;
 
+import static android.view.View.INVISIBLE;
+
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private ImageView imageView;
     private Button buttonTak, buttonNie, buttonDalej;
+    private int aktualne = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,21 @@ public class MainActivity extends AppCompatActivity {
         buttonDalej = findViewById(R.id.button3);
         imageView = findViewById(R.id.imageView);
         wypiszPytanie(0);
+        buttonDalej.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aktualne++;
+                        if (aktualne == pytania.size()) {
+                            buttonDalej.setVisibility(INVISIBLE);
+                            // TODO: wypisywanie wyniku.
+                        }
+                        else {
+                            wypiszPytanie(aktualne);
+                        }
+                    }
+                }
+        );
     }
 
     private void wypiszPytanie(int ktore) {
