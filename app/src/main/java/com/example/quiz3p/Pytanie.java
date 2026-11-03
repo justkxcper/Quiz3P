@@ -8,12 +8,22 @@ public class Pytanie {
     private boolean czyPoprawnie;
     // dobra odpowiedź - true; zła - false.
 
+    private String podpowiedz;
+
+    public Pytanie(long idZdjecia, String trescPytania, boolean poprawnaOdp, String podpowiedz) {
+        this.idZdjecia = idZdjecia;
+        this.trescPytania = trescPytania;
+        this.poprawnaOdp = poprawnaOdp;
+        this.podpowiedz = podpowiedz;
+        czyPoprawnie = false;
+    }
 
     public Pytanie(long idZdjecia, String trescPytania, boolean poprawnaOdp) {
         this.idZdjecia = idZdjecia;
         this.trescPytania = trescPytania;
         this.poprawnaOdp = poprawnaOdp;
         czyPoprawnie = false;
+
     }
 
     public long getIdZdjecia() {
@@ -36,4 +46,7 @@ public class Pytanie {
         this.czyPoprawnie = czyPoprawnie;
     }
 
+    public String getPodpowiedz() {
+        return podpowiedz;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.quiz3p;
 
 import static android.view.View.INVISIBLE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +20,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Pytanie> pytania;
+    private static ArrayList<Pytanie> pytania;
     private TextView textView;
     private ImageView imageView;
-    private Button buttonTak, buttonNie, buttonDalej;
+    private Button buttonTak, buttonNie, buttonDalej, buttonPodp;
     private int aktualne = 0;
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTak = findViewById(R.id.button2);
         buttonNie = findViewById(R.id.button);
         buttonDalej = findViewById(R.id.button3);
+        buttonPodp = findViewById(R.id.buttonPodp);
         imageView = findViewById(R.id.imageView);
         wypiszPytanie(0);
 
@@ -84,7 +86,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        buttonPodp.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO: obsłuźyć wyświetlenie kliknięciem -> intencja
+                        // intencja jawna
+                        Intent intent = new Intent(MainActivity.this, PodpowiedzActivity.class);
+                        intent.putExtra("NR", aktualne);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
+
+
 
     private void sprawdzOdp(boolean odp) {
         if (pytania.get(aktualne).isPoprawnaOdp() == odp) {
@@ -101,11 +117,12 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(pytanie.getTrescPytania());
         imageView.setImageResource((int)(pytanie.getIdZdjecia()));
     }
-    private void dodajPytania() {
+    protected static ArrayList<Pytanie> dodajPytania() {
         pytania = new ArrayList<>();
-        pytania.add(new Pytanie(R.drawable.lis, "Czy lis mieszka w lesie?", true));
-        pytania.add(new Pytanie(R.drawable.czerwonapanda, "Czy to zwykła panda?", false));
-        pytania.add(new Pytanie(R.drawable.tygrys, "Czy tygrys jest z rodziny wilków?", false));
-        pytania.add(new Pytanie(R.drawable.zebra, "Czy zebra to koń?", true));
+        pytania.add(new Pytanie(R.drawable.lis, "Czy lis mieszka w lesie?", true, "Lisowi towarzyszy wiele drzew."));
+        pytania.add(new Pytanie(R.drawable.czerwonapanda, "Czy to zwykła panda?", false, "Spojrz na kolor i oceń, jaka to panda."));
+        pytania.add(new Pytanie(R.drawable.tygrys, "Czy tygrys jest z rodziny wilków?", false, "Tygrys to kot."));
+        pytania.add(new Pytanie(R.drawable.zebra, "Czy zebra to koń?", true, "Zebra ma kopyta."));
+        return pytania;
     }
 }
