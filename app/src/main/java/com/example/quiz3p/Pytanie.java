@@ -1,7 +1,7 @@
 package com.example.quiz3p;
 
 public class Pytanie {
-    private long idZdjecia;
+    private long idZdjecia; //R.drawable.lew
     private String trescPytania;
     private boolean poprawnaOdp;
     // tak - true; nie - false.

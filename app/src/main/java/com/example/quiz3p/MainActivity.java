@@ -69,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                         if (aktualne == pytania.size()) {
                             buttonDalej.setVisibility(INVISIBLE);
                             // TODO: wypisywanie wyniku.
+                            int punkty = 0;
+                            for (Pytanie pytanie : pytania) {
+                                if (pytanie.isCzyPoprawnie()) {
+                                    punkty++;
+                                }
+                            }
+                            textView.setText("Koniec tekstu. Wynik: " + punkty);
+                            // TODO: ukryć przyciski tak/nie
                         }
                         else {
                             wypiszPytanie(aktualne);
